@@ -18,34 +18,45 @@
 		  <tbody>
 		  	<tr>
 		  		<td scope="row">
-			  		<form action="">
+			  		<form class="row g-3 needs-validation" novalidate action="index.php" >
 			  			<div class="table-row">
-			  				<h5>Name</h5>
-			  				<input type="text" class="form-control" placeholder="Name" value="">
+			  				<label for="validationName" class="form-label">Name</label>
+			  				<input type="text" id="validationName" class="form-control" minlength="3" placeholder="Name" value="" required>
+		  				    <div class="invalid-feedback">
+						      Name is mandatory
+						    </div>
 			  			</div>  	
 			  			<div class="table-row">
-			  				<h5>Username</h5>
-			  				<input type="text" class="form-control" placeholder="Username" value="">
+			  				<label for="validationUsername" class="form-label">Username</label>
+			  				<input type="text" id="validationUsername" class="form-control" minlength="6" maxlength="16" placeholder="Username" value="" required>
+			  				<div class="invalid-feedback">
+			  					Username is required and it must be more than 6 and less than 16 character
+			  				</div>
 			  			</div>  
 			  			<div class="table-row">
-			  				<h5>Email</h5>
-			  				<input type="text" class="form-control" placeholder="Email" value="">
+			  				<label for="validationEmail" class="form-label">Email</label>
+			  				<input type="email" id="validationEmail" class="form-control" placeholder="Email" value="" required>
+			  				<div class="invalid-feedback">
+			  					It must be valid email
+			  				</div>
 			  			</div>  
 			  			<div class="table-row">
-			  				<h5>Phone</h5>
-			  				<input type="text" class="form-control" placeholder="Phone" value="">
+			  				<label for="validationPhone" class="form-label">Phone</label>
+			  				<input type="tel" id="validationPhone" minlength="3" class="form-control" placeholder="Phone" value="" required>
+			  				<div class="invalid-feedback">
+			  					It must be valid phone
+			  				</div>
 			  			</div> 		
 			  			<div class="table-row">
-			  				<h5>Website</h5>
-			  				<input type="text" class="form-control" placeholder="Website" value="">
+			  				<label for="validationWebsite" class="form-label">Website</label>
+			  				<input type="url"  id="validationWebsite" class="form-control" placeholder="Website" value="" required>
+			  				<div class="invalid-feedback">
+			  					It must be valid website
+			  				</div>
 			  			</div> 
 			  			<div class="table-row">
-			  				<h5>Website</h5>
-			  				<input type="text" class="form-control" placeholder="Website" value="">
-			  			</div>	
-			  			<div class="table-row">
-			  				<h5>Image</h5>
-			  				<input type="file">
+			  				<label for="validationImage" class="form-label">Image</label><br>
+			  				<input id="validationImage" type="file" required>
 			  			</div>
 			  			<div class="table-row">
 			  				<input type="submit" class="btn btn-success btn-create" value="Submit" >
@@ -56,5 +67,7 @@
 		  </tbody>
 		</table>
 	</div>
+
+	<script src="bootstrap-assets/js/validation.js"></script>
 </body>
 </html>
