@@ -25,25 +25,37 @@
 		    </tr>
 		  </thead>
 		  <tbody>
+		  	<?php
+
+		  	require('functions.php');
+		  	$users = getUsers("users.json");
+
+		  	for($i = 0;$i < count($users); $i++){
+		  		
+		  	?>
 		    <tr>
-		      <th valign="middle" scope="row"><img class="table_image" src="assets/images/icon.png" alt="icon"></th>
-		      <td valign="middle" >Patricia Lebsack</td>
-		      <td valign="middle">Karianne</td>
-		      <td valign="middle">Juliane@mail.ru</td>
-		      <td valign="middle">12345789</td>
-		      <td valign="middle"><a href="#">kail.ru</a></td>
+		      <th valign="middle" scope="row"><img class="table_image" src="<?php echo($users[$i]['image']);?>" alt="icon"></th>
+		      <td valign="middle" ><?php echo($users[$i]['name']);?></td>
+		      <td valign="middle"><?php echo($users[$i]['username']);?></td>
+		      <td valign="middle"><?php echo($users[$i]['email']);?></td>
+		      <td valign="middle"><?php echo($users[$i]['phone']);?></td>
+		      <td valign="middle"><a href="<?php echo($users[$i]['website']);?>"><?php echo( str_replace( array('http://', 'https://'), '', $users[$i]['website']));?></a></td>
 		      <td valign="middle">
-		      	<form action="profile.php">
+		      	<form action="profile.php" method="get">
+		      		<input class="none" name="id" value="<?php echo($users[$i]['id']);?>">
 		      		<input type="submit" class="btn btn-outline-info btn-actions" value="View">
 		      	</form>
-		      	<form action="update.php">
+		      	<form action="update.php?id=<?php echo($users[$i]['id']);?>">
+		      		<input class="none" name="id" value="<?php echo($users[$i]['id']);?>">
 		      		<input type="submit" class="btn btn-outline-primary btn-actions" value="Update">
 		      	</form>
-		      	<form action="">
+		      	<form action="delete.php">
+		      		<input class="none" name="id" value="<?php echo($users[$i]['id']);?>">
 		      		<input type="submit" class="btn btn-outline-danger btn-actions" value="Delete">
 		      	</form>
 		      </td>
 		    </tr>
+		<?php } ?>
 		  </tbody>
 		</table>
 	</div>

@@ -8,6 +8,14 @@
 	<title>CRUD application</title>
 </head>
 <body>
+	<?php
+
+	require('functions.php');
+
+	$users = getUsers("users.json");
+  	$user = $users[getUser($users, $_GET['id'])];
+
+	?>
 	<div class="container">
 		<table class="table table-bordered">
 		  <thead class="table-light">
@@ -19,6 +27,7 @@
 		  	<tr>
 		  		<th colspan="2" scope="row">
 		  			<form action="update.php">
+		  				<input class="none" name="id" value="<?php echo($user['id']);?>">
 		  				<input type="submit" class="btn btn-outline-primary btn-actions" value="Update">
 		  			</form>
 		  			<form action="">
@@ -28,23 +37,23 @@
 		    </tr>
 		    <tr valign="middle" height="50px" >
 		      <th width="250px" scope="row">Name:</th>
-		      <td>Mark</td>
+		      <td><?php echo($user['name']) ?></td>
 		    </tr>
 		    <tr valign="middle" height="50px" >
 		      <th width="250px" scope="row">Username:</th>
-		      <td>Jacob</td>
+		      <td><?php echo($user['username']) ?></td>
 		    </tr>
 		    <tr valign="middle" height="50px" >
 		      <th width="250px" scope="row">Email:</th>
-		      <td>Larry</td>
+		      <td><?php echo($user['email']) ?></td>
 		    </tr>
 		    <tr valign="middle" height="50px" >
 		      <th width="250px" scope="row">Phone:</th>
-		      <td>Larry</td>
+		      <td><?php echo($user['phone']) ?></td>
 		    </tr>
 		    <tr valign="middle" height="50px" >
 		      <th width="250px" scope="row">Website:</th>
-		      <td>Larry</td>
+		      <td><?php echo($user['website']) ?></td>
 		    </tr>
 		  </tbody>
 		</table>

@@ -8,6 +8,7 @@
 	<title>CRUD application</title>
 </head>
 <body>
+
 	<div class="container">
 		<table class="table table-bordered">
 		  <thead class="table-light">
@@ -18,45 +19,74 @@
 		  <tbody>
 		  	<tr>
 		  		<td scope="row">
-			  		<form class="row g-3 needs-validation" novalidate action="index.php" >
+		  				<?php
+
+							require('functions.php');
+
+							$users = getUsers('users.json');
+							$user = getUser($users, $_GET['id']);
+							
+							if($_POST){
+								if ($users[$user]['id'] == $_GET['id']) {
+									
+									$users[$user]['name'] = $_POST['name'];
+									$users[$user]['username'] = $_POST['username'];
+									$users[$user]['email'] = $_POST['email'];
+									$users[$user]['phone'] = $_POST['phone'];
+									$users[$user]['website'] = $_POST['website'];
+									$users[$user]['image'] = 'assets/images/' . $_POST['image'];
+								}
+								
+
+
+								$newJson = json_encode($users);
+								file_put_contents('users.json', $newJson);
+
+								echo('<p class="successfulUpdate" >Changes was saved!</p>');
+							}
+
+							$user = $users[$user];
+						?>
+			  		<form class="row g-3 needs-validation" novalidate method="post" >
 			  			<div class="table-row">
 			  				<label for="validationName" class="form-label">Name</label>
-			  				<input type="text" id="validationName" class="form-control" minlength="3" placeholder="Name" value="" required>
+			  				<input type="text" name="name" id="validationName" class="form-control" minlength="3" placeholder="Name" value="<?php echo($user['name'])?>" required>
 		  				    <div class="invalid-feedback">
 						      Name is mandatory
 						    </div>
 			  			</div>  	
 			  			<div class="table-row">
 			  				<label for="validationUsername" class="form-label">Username</label>
-			  				<input type="text" id="validationUsername" class="form-control" minlength="6" maxlength="16" placeholder="Username" value="" required>
+			  				<input type="text" name="username" id="validationUsername" class="form-control" minlength="6" maxlength="16" placeholder="Username" value="<?php echo($user['username'])?>" required>
 			  				<div class="invalid-feedback">
 			  					Username is required and it must be more than 6 and less than 16 character
 			  				</div>
 			  			</div>  
 			  			<div class="table-row">
 			  				<label for="validationEmail" class="form-label">Email</label>
-			  				<input type="email" id="validationEmail" class="form-control" placeholder="Email" value="" required>
+			  				<input type="email" name="email" id="validationEmail" class="form-control" placeholder="Email" value="<?php echo($user['email'])?>" required>
 			  				<div class="invalid-feedback">
 			  					It must be valid email
 			  				</div>
 			  			</div>  
 			  			<div class="table-row">
 			  				<label for="validationPhone" class="form-label">Phone</label>
-			  				<input type="tel" id="validationPhone" minlength="3" class="form-control" placeholder="Phone" value="" required>
+			  				<input type="tel" name="phone" id="validationPhone" minlength="3" class="form-control" placeholder="Phone" value="<?php echo($user['phone']) ?>" required>
 			  				<div class="invalid-feedback">
 			  					It must be valid phone
 			  				</div>
 			  			</div> 		
 			  			<div class="table-row">
 			  				<label for="validationWebsite" class="form-label">Website</label>
-			  				<input type="url"  id="validationWebsite" class="form-control" placeholder="Website" value="" required>
+			  				<input type="url" name="website"  id="validationWebsite" class="form-control" placeholder="Website" value="<?php echo($user['website'])?>" required>
 			  				<div class="invalid-feedback">
 			  					It must be valid website
 			  				</div>
 			  			</div> 
 			  			<div class="table-row">
 			  				<label for="validationImage" class="form-label">Image</label><br>
-			  				<input id="validationImage" type="file" required>
+			  				<img class="table_image" src="<?php echo($user['image'])?>" alt="icon"><br>
+			  				<input id="validationImage" type="file" name="image">
 			  			</div>
 			  			<div class="table-row">
 			  				<input type="submit" class="btn btn-success btn-create" value="Submit" >
@@ -68,6 +98,6 @@
 		</table>
 	</div>
 
-	<script src="bootstrap-assets/js/validation.js"></script>
+	<script src="assets/js/bootstrap-validation.js"></script>
 </body>
 </html>
