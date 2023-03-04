@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="assets/css/styles.css">
-	<link rel="stylesheet" href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 	<title>CRUD application</title>
 </head>
 <body>
@@ -34,10 +34,8 @@
 									$users[$user]['email'] = $_POST['email'];
 									$users[$user]['phone'] = $_POST['phone'];
 									$users[$user]['website'] = $_POST['website'];
-									$users[$user]['image'] = 'assets/images/' . $_POST['image'];
+									$users[$user]['image'] = $_POST['image'];
 								}
-								
-
 
 								$newJson = json_encode($users);
 								file_put_contents('users.json', $newJson);
@@ -86,10 +84,13 @@
 			  			<div class="table-row">
 			  				<label for="validationImage" class="form-label">Image</label><br>
 			  				<img class="table_image" src="<?php echo($user['image'])?>" alt="icon"><br>
-			  				<input id="validationImage" type="file" name="image">
+			  				<input id="validationImage" name="image" type="url" class="form-control" placeholder="Paste picture url here" value="" required>
 			  			</div>
 			  			<div class="table-row">
 			  				<input type="submit" class="btn btn-success btn-create" value="Submit" >
+							<a href="index.php" class="btn btn-secondary">
+								Back
+							</a>
 			  			</div>
 			  		</form>		  			
 		      	</td>

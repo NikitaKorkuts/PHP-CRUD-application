@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="assets/css/styles.css">
-	<link rel="stylesheet" href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 	<title>CRUD appliction</title>
 </head>
 <body>
@@ -33,7 +33,7 @@
 		  				$newUser->email = $_POST['email'];
 		  				$newUser->phone = $_POST['phone'];
 		  				$newUser->website = $_POST['website'];
-		  				$newUser->image = 'assets/images/' . $_POST['image'];
+		  				$newUser->image = $_POST['image'];
 
 		  				$users[] = $newUser;
 
@@ -80,10 +80,13 @@
 			  			</div> 
 			  			<div class="table-row">
 			  				<label for="validationImage" class="form-label">Image</label><br>
-			  				<input id="validationImage" name="image" type="file" required>
+			  				<input id="validationImage" name="image" type="url" class="form-control" placeholder="Paste picture url here" value="" required>
 			  			</div>
 			  			<div class="table-row">
 			  				<input type="submit" class="btn btn-success btn-create" value="Submit" >
+							<a href="index.php" class="btn btn-secondary">
+								Back
+							</a>
 			  			</div>
 			  		</form>		  			
 		      	</td>
@@ -91,7 +94,6 @@
 		  </tbody>
 		</table>
 	</div>
-
 	<script src="assets/js/bootstrap-validation.js"></script>
 </body>
 </html>
